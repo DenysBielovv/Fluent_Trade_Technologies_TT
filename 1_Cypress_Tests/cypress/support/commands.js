@@ -32,5 +32,7 @@ Cypress.Commands.add('loginAPI', (email, password) => {
           email: email,
           password: password,
         },
-      })
+    }).then((Response) => {
+      cy.setCookie('PHPSESSID', (Response.headers['set-cookie'] + 'a').slice(10, -9))
+    })
 });
